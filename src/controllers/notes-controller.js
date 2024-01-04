@@ -20,9 +20,23 @@ export const getAllNotes = async (req,res,next) => {
     }
 }
 
-// export const createNotes = async (req,res,next) => {
-//     try{
-//         const { title, content} = req.body;
-//         const note = new Note
-//     }
-// }
+export const createNotes = async (req,res,next) => {
+        try{
+            const { title, content} = req.body;
+            const note = new Note({
+                title:title,
+                content:content,
+                createdAt:new Date()
+            })
+            note.save();
+            return res.status(200).json({
+                note:note,
+                message:"note created successfully"
+            })
+        }catch(err){
+            console.log(err);
+            return res.status(500).json({
+                message:"internal server error"
+            })
+        }
+    }
