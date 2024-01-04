@@ -1,12 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
-import router from "./src/routes/notes.routes";
+import notesRoutes from "./src/routes/notes-routes.js";
+
 
 const app = express();
 
 app.use(express.json());
 
-app.use("/api/notes",router);
+app.use("/api/notes", notesRoutes);
 
 mongoose.connect(
     "mongodb+srv://admin:N5FRSKW1uDhAomUp@notes.fgt3pt4.mongodb.net/?retryWrites=true&w=majority"
